@@ -1,0 +1,40 @@
+1. create image: 
+    % docker-compose build 
+2. create app w/o container:
+    % sudo docker-compose run --rm web django-admin startproject core .
+3. create container:
+    % docker-compose up -d
+4. delete container:
+    % docker-compose down
+5. stop container:
+    % docker-compose stop
+6. migrate:
+    % docker-compose run --rm web python3 manage.py makemigrations
+    % docker-compose run --rm web python3 manage.py migrate
+7. stop all containers on Docker:
+    % docker ps -aq | xargs docker stop
+8. create superuser:
+    % docker-compose run --rm web python3 manage.py createsuperuser
+9. create app:
+    % docker-compose run --rm web python3 manage.py startapp "appname"
+10. runserver:
+    % docker-compose run --rm web python3 manage.py runserver
+11. add APP:
+    'appname.apps.AppnameConfig',
+12. modify DB:
+    DATABASES = {
+        'default': {
+            'ENGINE': 'django.db.backends.mysql',
+            'NAME': 'my-app-db',
+            'USER': 'root',
+            'PASSWORD': 'example',
+            'HOST': 'db',
+            'PORT': 3306,
+        }
+    }
+
+13. shell_command:
+    % docker-compose run --rm web python3 manage.py shell
+    >>> 
+
+14. when re-migrate needed, drop table phpmyadmin and delete migration file.

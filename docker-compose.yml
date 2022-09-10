@@ -1,0 +1,39 @@
+version: "3.9"
+
+services:
+  db:
+    image: mysql 
+    restart: always
+    environment:
+      MYSQL_DATABASE: 'my-app-db'
+      MYSQL_USER: 'mysql'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'example'
+    ports:
+      - "9906:3306"
+
+  web:
+    build: .
+    command: python manage.py runserver 0.0.0.0:8000
+    volumes:
+      - .:/my_app_dir
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    ports:
+        - '8080:80'
+    restart: always
+    environment:
+        PMA_HOST: db
+    depends_on:
+        - db
+
+  adminer:
+    image: adminer
+    restart: always
+    ports:
+      - 8081:8080
