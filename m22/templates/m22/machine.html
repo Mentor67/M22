@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+{% block title %}Maintenance M22 - Machines{% endblock %}
+{% block content %}
+
+<div class="container">
+  <h2>Machines</h2>
+  <p>Here we can find all the machines instances with their basic info</p>
+  <table class="table table-dark table-hover">
+    <thead>
+       <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>PRICE</th>
+           <th>STATUS</th>
+     </tr>
+    </thead>
+      <tbody>
+           {% for machine in machines %}
+            <tr>
+                <td>{{machine.id}}</td>
+                <td>{{machine.name}}</td>
+                <td>{{machine.price}}$</td>
+                <td>{{machine.machine_status}}</td>
+            </tr>
+
+        {% endfor %}
+
+    </tbody>
+  </table>
+</div>
+
+<!--active machines-->
+
+<div class="container">
+  <h2>Active Machines</h2>
+  <p>Here we can find all the active machines instances with their basic info</p>
+  <table class="table table-success table-hover">
+    <thead>
+       <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>PRICE</th>
+           <th>STATUS</th>
+     </tr>
+    </thead>
+      <tbody>
+           {% for machine in active_machines %}
+            <tr>
+                <td>{{machine.id}}</td>
+                <td>{{machine.name}}</td>
+                <td>{{machine.price}}$</td>
+                <td>{{machine.machine_status}}</td>
+            </tr>
+
+        {% endfor %}
+
+    </tbody>
+  </table>
+</div>
+
+<!--in service machines-->
+
+<div class="container">
+  <h2>In Service Machines</h2>
+  <p>Here we can find all the in service machines instances with their basic info</p>
+  <table class="table table-warning table-hover">
+    <thead>
+       <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>PRICE</th>
+           <th>STATUS</th>
+     </tr>
+    </thead>
+      <tbody>
+           {% for machine in in_service_machines %}
+            <tr>
+                <td>{{machine.id}}</td>
+                <td>{{machine.name}}</td>
+                <td>{{machine.price}}$</td>
+                <td>{{machine.machine_status}}</td>
+            </tr>
+
+        {% endfor %}
+
+    </tbody>
+  </table>
+</div>
+
+{% endblock %}
+
+

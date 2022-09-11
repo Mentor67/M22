@@ -73,7 +73,7 @@ class Machine(models.Model):
         name: {self.name};
         description: {self.description};
         price: {self.price};
-        status: {self.status};
+        status: {self.machine_status};
         """
 
 
@@ -118,7 +118,7 @@ class Provider(models.Model):
     def __str__(self):
         return f"""
         name: {self.name};
-        status: {self.status};
+        status: {self.provider_status};
         """
 
 class PartCategory(models.Model):
@@ -156,11 +156,11 @@ class Part(models.Model):
         return f"""
         name: {self.name};
         price: {self.price};
-        category: {self.category};
+        category: {self.part_category};
         stock: {self.stock};
         unit: {self.mu};
         target_stock: {self.target_stock};
-        status: {self.status};
+        status: {self.provider_status};
         """
 class MaintenanceType(models.Model):
     type = models.CharField(max_length=50)
