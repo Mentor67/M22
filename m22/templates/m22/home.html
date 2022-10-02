@@ -1,194 +1,87 @@
 {% extends 'base.html' %}
 {% block title %}Maintenance M22{% endblock %}
 {% block content %}
+<div class="">
+  <div class="row w-50 h-100 mx-auto">
 
+<!--  first icon start-->
+  <div class="col-4 d-inline-flex px-3 py-3 ">
+    <a class="d-flex flex-column text-dark text-center p-4 border rounded menu-link" href="http://localhost:8000/machines/">
+     <img class="img-fluid" src="https://cdn-icons-png.flaticon.com/512/942/942387.png"
+       width="110" height="110">
 
-<!--first label-->
+    <span class="mt-2">
+      Machines
+    </span>
+          </a>
+  </div>
+<!--  first icon end-->
 
-<div class="container">
-  <h2>Machines</h2>
-  <p>Here we can find all the machines instances with their basic info</p>
-  <table class="table table-dark table-hover">
-    <thead>
-       <tr>
-        <th>ID</th>
-        <th>NAME</th>
-        <th>PRICE</th>
-           <th>STATUS</th>
-     </tr>
-    </thead>
-      <tbody>
-           {% for machine in machines %}
-            <tr>
-                <td>{{machine.id}}</td>
-                <td>{{machine.name}}</td>
-                <td>{{machine.price}}$</td>
-                <td>{{machine.machine_status}}</td>
-            </tr>
+<!--  second icon start-->
+  <div class="col-4 d-inline-flex px-3 py-3 ">
+    <a class="d-flex flex-column text-dark text-center p-4 border rounded menu-link" href="http://localhost:8000/providers/">
+     <img class="img-fluid" src="https://cdn-icons-png.flaticon.com/512/1560/1560002.png"
+       width="110" height="110">
 
-        {% endfor %}
+    <span class="mt-2">
+      Providers
+    </span>
+          </a>
+  </div>
+<!--  second icon end-->
 
-    </tbody>
-  </table>
+  <!--  3rd icon start-->
+  <div class="col-4 d-inline-flex px-3 py-3 ">
+    <a class="d-flex flex-column text-dark text-center p-4 border rounded menu-link" href="http://localhost:8000/parts/">
+     <img class="img-fluid" src="https://cdn-icons-png.flaticon.com/512/1643/1643516.png"
+       width="110" height="110">
+
+    <span class="mt-2">
+      Parts
+    </span>
+    </a>
+  </div>
+<!--  3rd icon end-->
+
+    <!--  4th icon start-->
+  <div class="col-4 d-inline-flex px-3 py-3 ">
+     <a class="d-flex flex-column text-dark text-center p-4 border rounded menu-link" href="http://localhost:8000/maintenances/">
+     <img class="img-fluid" src="https://cdn-icons-png.flaticon.com/512/2778/2778802.png"
+       width="110" height="110">
+
+    <span class="mt-2">
+      Maintenance
+    </span>
+     </a>
+  </div>
+<!--  4th icon end-->
+
+     <!--  5th icon start-->
+  <div class="col-4 d-inline-flex px-3 py-3 ">
+     <a class="d-flex flex-column text-dark text-center p-4 border rounded menu-link" href="http://localhost:8000/materials/">
+     <img class="img-fluid" src="https://cdn-icons-png.flaticon.com/512/5356/5356556.png"
+       width="110" height="110">
+
+    <span class="mt-2">
+      Materials
+    </span>
+     </a>
+  </div>
+<!--  5th icon end-->
+
+      <!--  6th icon start-->
+  <div class="col-4 d-inline-flex px-3 py-3 ">
+     <a class="d-flex flex-column text-dark text-center p-4 border rounded menu-link" href="http://localhost:8000/labors/">
+     <img class="img-fluid" src="https://cdn-icons-png.flaticon.com/512/7315/7315214.png"
+       width="110" height="110">
+
+    <span class="mt-2">
+      Labors
+    </span>
+     </a>
+  </div>
+<!--  6th icon end-->
+    </div>
 </div>
-
-
-
-<!--second label-->
-
-<div class="container">
-  <h2>Machines 0</h2>
-  <p>Here we can find all the machines instances with their basic info</p>
-  <table class="table table-dark table-hover">
-    <thead>
-       <tr>
-        <th>ID</th>
-        <th>NAME</th>
-        <th>PRICE</th>
-           <th>STATUS</th>
-     </tr>
-    </thead>
-      <tbody>
-           {% for resource in providers %}
-            <tr>
-                <td>{{resource.id}}</td>
-                <td>{{resource.name}}</td>
-                <td>{{resource.provider_type}}$</td>
-                <td>{{resource.provider_status}}</td>
-            </tr>
-
-        {% endfor %}
-
-    </tbody>
-  </table>
-</div>
-
-
-
-<!--3rd label-->
-
-<div class="container">
-  <h2>Machines 0</h2>
-  <p>Here we can find all the machines instances with their basic info</p>
-  <table class="table table-dark table-hover">
-    <thead>
-       <tr>
-        <th>ID</th>
-        <th>NAME</th>
-        <th>PROVIDER</th>
-           <th>STATUS</th>
-     </tr>
-    </thead>
-      <tbody>
-           {% for resource in providers %}
-            <tr>
-                <td>{{resource.id}}</td>
-                <td>{{resource.name}}</td>
-                <td>{{resource.provider_type}}$</td>
-                <td>{{resource.provider_status}}</td>
-            </tr>
-
-        {% endfor %}
-
-    </tbody>
-  </table>
-</div>
-
-
-
-
-
-
-
-
-
-
-<!--3rd label-->
-
-<div class="container">
-  <h2>Parts</h2>
-  <p>Here we can find all the parts instances with their basic info</p>
-  <table class="table table-dark table-hover">
-    <thead>
-       <tr>
-
-
-               <th>ID</th>
-        <th>NAME</th>
-           <th>PRICE</th>
-        <th>CATEGORY</th>
-       <th>STOCK</th>
-       <th>UNIT</th>
-       <th>TARGET STOCK</th>
-       <th>STATUS</th>
-
-     <tr>
-        <td>
-             {% for part in parts %}
-            <li>{{part.id}}
-               </li>
-        {% endfor %}
-        </td>
-
-          <td>
-             {% for part in parts %}
-            <li>{{part.name}}
-               </li>
-        {% endfor %}
-        </td>
-
-            <td>
-             {% for part in parts %}
-            <li>{{part.price}}$
-               </li>
-        {% endfor %}
-        </td>
-
-         <td>
-             {% for part in parts %}
-            <li>{{part.part_category}}
-               </li>
-        {% endfor %}
-        </td>
-
-            <td>
-             {% for part in parts %}
-            <li>{{part.stock}} pieces
-               </li>
-        {% endfor %}
-        </td>
-
-            <td>
-             {% for part in parts %}
-            <li>{{part.mu}}
-               </li>
-        {% endfor %}
-        </td>
-
-            <td>
-             {% for part in parts %}
-            <li>{{part.target_stock}} pieces
-               </li>
-        {% endfor %}
-        </td>
-
-            <td>
-             {% for part in parts %}
-            <li>{{part.provider_status}}
-               </li>
-        {% endfor %}
-        </td>
-
-
-      </tr>
-
-    </tbody>
-  </table>
-</div>
-
-
 
 {% endblock %}
-
-
-

@@ -1,29 +1,7 @@
-from unicodedata import category, name
+
 from django.db import models
 from django.contrib.auth.models import User
-# from urllib import request
-#from crum import get_current_user
 
-# Create your models here.
-# class User(models.Model):
-#     name = models.CharField(max_length=200)
-#     role = models.CharField(max_length=20)
-#     acces_type = models.CharField(max_length=20)
-#     status = models.BooleanField()
-#     created = models.DateField(auto_now_add=True)
-#     modified = models.DateField(auto_now=True)
-
-#     def get_absolute_url(self):
-#         return "/users"
-
-
-#     def __str__(self):
-#         return f"""
-#         name: {self.name};
-#         role: {self.role};
-#         acces_type: {self.acces_type};
-#         status: {self.status};
-#         """
 
 class MachineCategory(models.Model):
     category = models.CharField(max_length=30)
@@ -35,8 +13,9 @@ class MachineCategory(models.Model):
 
     def __str__(self):
         return f"""
-        category: {self.category};
+        {self.category};
         """
+
 
 class MachineStatus(models.Model):
     status = models.CharField(max_length=30)
@@ -48,8 +27,9 @@ class MachineStatus(models.Model):
 
     def __str__(self):
         return f"""
-        status: {self.status};
+        {self.status}
         """
+
 
 class Machine(models.Model):
     name = models.CharField(max_length=200)
@@ -67,13 +47,12 @@ class Machine(models.Model):
     def get_absolute_url(self):
         return "/machines"
 
-
     def __str__(self):
         return f"""
-        name: {self.name};
-        description: {self.description};
-        price: {self.price};
-        status: {self.machine_status};
+        name: {self.name}
+        description: {self.description}
+        price: {self.price}
+        status: {self.machine_status}
         """
 
 
@@ -86,9 +65,10 @@ class ProviderType(models.Model):
         return "/providers"
 
     def __str__(self):
-        return f""""
-        type: {self.type};
+        return f"""
+        {self.type}
         """
+
 
 class ProviderStatus(models.Model):
     status = models.CharField(max_length=50)
@@ -99,9 +79,10 @@ class ProviderStatus(models.Model):
         return "/providers"
 
     def __str__(self):
-        return f""""
-        status: {self.status};
+        return f"""
+        {self.status}
         """
+
 
 class Provider(models.Model):
     name = models.CharField(max_length=200)
@@ -114,12 +95,12 @@ class Provider(models.Model):
     def get_absolute_url(self):
         return "/providers"
 
-
     def __str__(self):
         return f"""
-        name: {self.name};
-        status: {self.provider_status};
+        name: {self.name}
+        status: {self.provider_status}
         """
+
 
 class PartCategory(models.Model):
     category = models.CharField(max_length=50)
@@ -130,9 +111,10 @@ class PartCategory(models.Model):
         return "/parts"
 
     def __str__(self):
-        return f""""
-        category: {self.category};
+        return f"""
+        {self.category}
         """
+
 
 class Part(models.Model):
     name = models.CharField(max_length=200)
@@ -147,10 +129,9 @@ class Part(models.Model):
     created_on = models.DateField(auto_now_add=True)
     modified_on = models.DateField(auto_now=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    
+
     def get_absolute_url(self):
         return "/parts"
-
 
     def __str__(self):
         return f"""
@@ -162,6 +143,8 @@ class Part(models.Model):
         target_stock: {self.target_stock};
         status: {self.provider_status};
         """
+
+
 class MaintenanceType(models.Model):
     type = models.CharField(max_length=50)
     created_on = models.DateField(auto_now_add=True)
@@ -172,8 +155,9 @@ class MaintenanceType(models.Model):
 
     def __str__(self):
         return f"""
-        type: {self.type};
+         {self.type}
         """
+
 
 class MaintenanceStatus(models.Model):
     status = models.CharField(max_length=50)
@@ -186,13 +170,14 @@ class MaintenanceStatus(models.Model):
 
     def __str__(self):
         return f"""
-        status: {self.status};
+         {self.status}
         """
 
- #   def save(self, *args, **kwargs):
- #       user = get_current_user()
- #       self.user = user
- #       super(MaintenanceStatus, self).save(*args, **kwargs)
+
+#   def save(self, *args, **kwargs):
+#       user = get_current_user()
+#       self.user = user
+#       super(MaintenanceStatus, self).save(*args, **kwargs)
 
 class Maintenance(models.Model):
     machine = models.ForeignKey(Machine, on_delete=models.CASCADE)
@@ -207,13 +192,13 @@ class Maintenance(models.Model):
     def get_absolute_url(self):
         return "/maintenance"
 
-
     def __str__(self):
         return f"""
-        status: {self.status};
+         {self.machine}
+         {self.maintenance_status}
+         {self.maintenance_type}
         """
 
-    
 
 class Material(models.Model):
     maintenance = models.ForeignKey(Maintenance, on_delete=models.CASCADE)
@@ -226,13 +211,13 @@ class Material(models.Model):
     def get_absolute_url(self):
         return "/materials"
 
-
     def __str__(self):
         return f"""
         name: {self.part.name}
         qty: {self.qty};
 
         """
+
 
 class Labor(models.Model):
     maintenance = models.ForeignKey(Maintenance, on_delete=models.CASCADE)
@@ -245,7 +230,6 @@ class Labor(models.Model):
 
     def get_absolute_url(self):
         return "/labor"
-
 
     def __str__(self):
         return f"""

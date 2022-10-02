@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% block title %}Maintenance M22 - Machines{% endblock %}
+{% block content %}
+  <h2>Materials</h2>
+  <p>Here we can find all the materials instances with their basic info</p>
+ <table class="table table-dark table-hover">
+    <thead>
+       <tr>
+        <th>ID</th>
+        <th>PART</th>
+        <th>QUANTITY</th>
+           <th>TYPE</th>
+     </tr>
+    </thead>
+      <tbody>
+           {% for material in materials %}
+            <tr>
+                <td>{{material.id}}</td>
+                <td>{{material.part.name}}</td>
+                <td>{{material.qty}}</td>
+                <td>{{material.maintenance.maintenance_type}}</td>
+            </tr>
+
+        {% endfor %}
+
+    </tbody>
+  </table>
+</div>
+{% endblock %}
+
+
+
+
+<!--           {% for material in materials %}-->
+<!--            <tr>-->
+<!--                <td>{{material.id}}</td>-->
+<!--                <td>{{material.part}}</td>-->
+<!--                <td>{{material.qty}}</td>-->
+<!--                <td>{{material.maintenance}}</td>-->
+<!--            </tr>-->
+
+<!--        {% endfor %}-->
