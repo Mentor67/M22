@@ -13,7 +13,7 @@ class MachineCategory(models.Model):
 
     def __str__(self):
         return f"""
-        {self.category};
+        {self.category}
         """
 
 
@@ -129,6 +129,17 @@ class Part(models.Model):
     created_on = models.DateField(auto_now_add=True)
     modified_on = models.DateField(auto_now=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
+    link = models.CharField(max_length=500, default="https://www.emag.ro/")
+
+    @property
+    def diff_stock(self):
+        return self.target_stock - self.stock
+
+    @property
+    def val_diff_stock(self):
+        return (self.target_stock - self.stock) * self.price
+
+
 
     def get_absolute_url(self):
         return "/parts"
@@ -186,7 +197,6 @@ class Maintenance(models.Model):
     created_on = models.DateField(auto_now_add=True)
     modified_on = models.DateField(auto_now=True)
     user = models.ForeignKey(User, on_delete=models.CASCADE)
-    part = models.ForeignKey(Part, on_delete=models.CASCADE)
     maintenance_type = models.ForeignKey(MaintenanceType, on_delete=models.CASCADE)
 
     def get_absolute_url(self):
@@ -194,7 +204,8 @@ class Maintenance(models.Model):
 
     def __str__(self):
         return f"""
-         {self.machine}
+         {self.id}
+         {self.machine.name}
          {self.maintenance_status}
          {self.maintenance_type}
         """
@@ -213,6 +224,7 @@ class Material(models.Model):
 
     def __str__(self):
         return f"""
+        {self.maintenance.id}
         name: {self.part.name}
         qty: {self.qty};
 

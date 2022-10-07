@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}Maintenance M22 - Machines{% endblock %}
+{% block content %}
+
+
+<div class="container">
+    <div class="card p-3 mb-2" style="width: 28rem;">
+        <div class="alert alert-primary p-4 border rounded" role="alert">
+      <div class="card-header font-weight-bold text-center">
+            <div class="text-dark">Maintenance for {{maintenance_detail.machine.description}} - {{maintenance_detail.machine.name}}</div>
+      </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item p-3 mb-2 bg-dark text-white">for: {{maintenance_detail.machine.name}}</li>
+            <li class="list-group-item p-3 mb-2 bg-dark text-white">start date: {{maintenance_detail.maintenance_date}} {{part_detail.mu}}</li>
+            <li class="list-group-item p-3 mb-2 bg-dark text-white">status: {{maintenance_detail.maintenance_status}}</li>
+            <li class="list-group-item p-3 mb-2 bg-dark text-white">responsible_user: {{maintenance_detail.user}}</li>
+            <li class="list-group-item p-3 mb-2 bg-dark text-white">maintenance type: {{maintenance_detail.maintenance_type}} {{part_detail.mu}}</li>
+            <li class="list-group-item p-3 mb-2 bg-dark text-white">responsible user: {{maintenance_detail.user}}</li>
+        </ul>
+    </div>
+</div>
+</div>
+
+{% for material in maintenance_detail.material_set.all %}
+
+    {{material.id}}
+    {{material.part.name}}
+    {{material.qty}}
+    {{material.user}}
+
+{% endfor %}
+{% endblock %}
+
+
+
+
+
+
+    maintenance = models.ForeignKey(Maintenance, on_delete=models.CASCADE)
+    part = models.ForeignKey(Part, on_delete=models.CASCADE)
+    qty = models.FloatField(default=0)
+    created_on = models.DateField(auto_now_add=True)
+    modified_on = models.DateField(auto_now=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)
