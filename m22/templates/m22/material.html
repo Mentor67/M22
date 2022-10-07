@@ -9,7 +9,8 @@
         <th>ID</th>
         <th>PART</th>
         <th>QUANTITY</th>
-           <th>TYPE</th>
+        <th>MAINTENANCE TYPE</th>
+        <th>FOR</th>
      </tr>
     </thead>
       <tbody>
@@ -17,8 +18,9 @@
             <tr>
                 <td>{{material.id}}</td>
                 <td>{{material.part.name}}</td>
-                <td>{{material.qty}}</td>
+                <td>{{material.qty}} {{material.part.mu}}</td>
                 <td>{{material.maintenance.maintenance_type}}</td>
+                <td>{{material.maintenance.machine.description}} - {{material.maintenance.machine.name}}</td>
             </tr>
 
         {% endfor %}

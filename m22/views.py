@@ -14,6 +14,8 @@ from .models import Maintenance
 from .models import Material
 from .models import Labor
 
+from .forms import MachineForm
+
 from django.views import generic
 
 
@@ -28,7 +30,6 @@ class HomeView(TemplateView):
         context["maintenances"] = Maintenance.objects.all()
         context["materials"] = Material.objects.all()
         context["labors"] = Labor.objects.all()
-        context['my_name'] = 'Andrei'
         return context
 
 
@@ -41,6 +42,16 @@ class MachineView(TemplateView):
         context["active_machines"] = Machine.objects.filter(machine_status=1)
         context["in_service_machines"] = Machine.objects.filter(machine_status=2)
         context['name'] = 'Machines List'
+        return context
+
+
+class ActiveMachinesview(TemplateView):
+    template_name = "m22/active_machine.html"
+
+    def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context["active_machines"] = Machine.objects.filter(machine_status=1)
+        context['name'] = 'Active Machines List'
         return context
 
 
@@ -89,16 +100,29 @@ class LaborView(TemplateView):
         return context
 
 
+# Detail Views
 class MachineDetailView(generic.DetailView):
     context_object_name = 'machine_detail'
     model = Machine
     template_name = "m22/machine_detail.html"
 
-    # def get_context_data(self, **kwargs):
-    #     context = super(MachineDetailView, self).get_context_data(**kwargs)
-    #     ## the context is a list of the tasks of the Project##
-    #     ##THIS IS THE ERROR##
-    #     context['maintenance'] = Maintenance.objects.all()
+
+class ProviderDetailView(generic.DetailView):
+    context_object_name = 'provider_detail'
+    model = Provider
+    template_name = "m22/provider_detail.html"
+
+
+class PartDetailView(generic.DetailView):
+    context_object_name = 'part_detail'
+    model = Part
+    template_name = "m22/part_detail.html"
+
+
+class MaintenanceDetailView(generic.DetailView):
+    context_object_name = 'maintenance_detail'
+    model = Maintenance
+    template_name = "m22/maintenance_detail.html"
 
 
 # Form views
@@ -107,18 +131,8 @@ class MachineCreateView(CreateView):
     template_name = "m22/new_machine.html"
 
     model = Machine
-    fields = [
-        'name',
-        'description',
-        'serial_number',
-        'manufactured',
-        'commissioned',
-        'price',
-        'machine_category',
-        'machine_status',
-        'user',
-    ]
     success_url = '/machines/'
+    form_class = MachineForm
 
 
 class ProviderCreateView(CreateView):
@@ -160,7 +174,40 @@ class MaintenanceCreateView(CreateView):
         'maintenance_date',
         'maintenance_status',
         'user',
-        'part',
         'maintenance_type',
     ]
     success_url = '/maintenances/'
+
+
+class MaterialCreateView(CreateView):
+    template_name = "m22/new_material.html"
+    model = Material
+    fields = [
+        'maintenance',
+        'part',
+        'qty',
+        'user',
+    ]
+    success_url = '/materials/'
+
+
+class LaborCreateView(CreateView):
+    template_name = 'm22/new_labor'
+    model = Labor
+    fields = [
+        ' maintenance',
+        'provider',
+        'document',
+        'value',
+        'user',
+    ]
+    success_url = '/labors/'
+
+
+# Delete views
+
+
+class MachineDeleteView(DeleteView):
+    template_name = 'm22/delete_machine.html'
+    model = Machine
+    success_url = '/machines/'

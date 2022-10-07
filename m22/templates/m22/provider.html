@@ -1,7 +1,9 @@
 {% extends 'base.html' %}
 {% block title %}Maintenance M22 - Machines{% endblock %}
 {% block content %}
-
+<a href="http://localhost:8000/providers/new/"><button type="button" class="btn btn-secondary btn-lg btn-block">Add a new provider</button> </a>
+<br>
+<br>
 <div class="container">
   <h2>Providers</h2>
   <p>Here we can find all the providers instances with their basic info</p>
@@ -11,16 +13,17 @@
         <th>ID</th>
         <th>NAME</th>
         <th>TYPE</th>
-           <th>STATUS</th>
+        <th>STATUS</th>
      </tr>
     </thead>
       <tbody>
-           {% for resource in providers %}
+           {% for provider in providers %}
             <tr>
-                <td>{{resource.id}}</td>
-                <td>{{resource.name}}</td>
-                <td>{{resource.provider_type}}$</td>
-                <td>{{resource.provider_status}}</td>
+                <td>{{provider.id}}</td>
+                <td><a class="text-white" href="http://localhost:8000/{{provider.id}}/providers/">{{provider.name}}</a></td>
+                <td>{{provider.provider_type}}</td>
+                <td>{{provider.provider_status}}</td>
+                <td><button type="button" class="btn btn-danger">Remove</button></td>
             </tr>
 
         {% endfor %}
@@ -28,4 +31,8 @@
     </tbody>
   </table>
 </div>
+<br>
+<br>
+<a href="http://localhost:8000/providers/new/"><button type="button" class="btn btn-secondary btn-lg btn-block">Add a new provider</button> </a>
+
 {% endblock %}

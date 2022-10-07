@@ -2,6 +2,9 @@
 {% block title %}Maintenance M22 - Machines{% endblock %}
 {% block content %}
 
+<a href="http://localhost:8000/parts/new/"><button type="button" class="btn btn-secondary btn-lg btn-block">Add a new part</button> </a>
+<br>
+<br>
 <div class="container">
   <h2>Parts</h2>
   <p>Here we can find all the parts instances with their basic info</p>
@@ -17,35 +20,40 @@
        <th>STOCK</th>
        <th>UNIT</th>
        <th>TARGET STOCK</th>
-       <th>STATUS</th>
+       <th>TO ORDER</th>
+           <th>ORDER VALUE</th>
+           <th>PROVIDER</th>
 
      </tr>
     </thead>
       <tbody>
+<!--           {% regroup parts by part.provider as parts_list %}-->
+
+
            {% for part in parts %}
             <tr>
                 <td>{{part.id}}</td>
-                <td>{{part.name}}</td>
+                <td><a class="text-white" href="http://localhost:8000/{{part.id}}/parts/">{{part.name}}</a></td>
                 <td>{{part.price}}$</td>
                 <td>{{part.part_category}}</td>
                 <td>{{part.stock}}</td>
                 <td>{{part.mu}}</td>
                 <td>{{part.target_stock}}</td>
-                <td>{{part.provider_status}}</td>
+                <td>{{part.diff_stock}}</td>
+                <td>{{part.val_diff_stock}}</td>
+                <td>{{part.provider.name}}</td>
+                <td><button type="button" class="btn btn-danger">Remove</button></td>
             </tr>
 
-        {% endfor %}
+            {% endfor %}
 
     </tbody>
   </table>
 </div>
+<br>
+<br>
+<a href="http://localhost:8000/parts/new/"><button type="button" class="btn btn-secondary btn-lg btn-block">Add a new part</button> </a>
+
+
 {% endblock %}
 
-id
-name
-price
-part_category
-part_stock
-mu
-target_stock
-provider_status

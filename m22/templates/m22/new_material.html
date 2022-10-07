@@ -2,9 +2,9 @@
 {% block title %}Maintenance M22 - Machines{% endblock %}
 {% block content %}
 
-  <form action="{% url 'new_machine' %}" method="POST">
+  <form action="{% url 'new_material' %}" method="POST">
     {% csrf_token %}
-    {{ form.as_p }}
+    {{ form }}
     <button type="submit" class="btn btn-primary my-5">Submit</button>
   </form>
 {% endblock %}

@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Maintenance M22 - Machines{% endblock %}
+{% block content %}
+
+
+<div class="container">
+    <div class="card p-3 mb-2" style="width: 28rem;">
+        <div class="alert alert-primary p-4 border rounded" role="alert">
+      <div class="card-header font-weight-bold text-center">
+            <div class="text-dark">{{part_detail.name}}</div>
+      </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item p-3 mb-2 bg-dark text-white">description: {{part_detail.description}}</li>
+            <li class="list-group-item p-3 mb-2 bg-dark text-white">price: {{part_detail.price}}$/ {{part_detail.mu}}</li>
+            <li class="list-group-item p-3 mb-2 bg-dark text-white">in stock since: {{part_detail.created_on}}</li>
+            <li class="list-group-item p-3 mb-2 bg-dark text-white">provider: {{part_detail.provider.name}}</li>
+            <li class="list-group-item p-3 mb-2 bg-dark text-white">stock: {{part_detail.stock}} {{part_detail.mu}}</li>
+            <li class="list-group-item p-3 mb-2 bg-dark text-white">target stock: {{part_detail.target_stock}} {{part_detail.mu}}</li>
+            <li class="list-group-item p-3 mb-2 bg-dark text-white">provider status: {{part_detail.provider_status}}</li>
+            <li class="list-group-item p-3 mb-2 bg-dark text-white">responsible user: {{part_detail.user}}</li>
+        </ul>
+    </div>
+</div>
+</div>
+
+
+{% if part_detail.diff_stock > 0 %}
+<div class="alert alert-warning" role="alert">
+  There are missing {{part_detail.diff_stock}} {{part_detail.mu}} of {{part_detail.name}} until the target stock of
+    {{part_detail.target_stock}} {{part_detail.mu}} is reached, click
+    <a class="font-weight-bold" href={{part_detail.link}}>here</a> to order
+</div>
+{% endif %}
+
+{% if part_detail.stock < 100%}
+<div class="alert alert-danger" role="alert">
+  There is only 1 {{part_detail.mu}} of {{part_detail.name}} left in stock
+</div>
+{% endif %}
+
+{% endblock %}

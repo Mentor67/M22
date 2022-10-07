@@ -1,0 +1,41 @@
+{% extends 'base.html' %}
+{% block title %}Maintenance M22 - Machines{% endblock %}
+{% block content %}
+
+
+
+
+
+<!--active machines-->
+
+<div class="container">
+  <h2>Active Machines</h2>
+  <p>Here we can find all the active machines instances with their basic info</p>
+  <table class="table table-success table-hover">
+    <thead>
+       <tr>
+        <th>ID</th>
+        <th>NAME</th>
+        <th>PRICE</th>
+           <th>STATUS</th>
+     </tr>
+    </thead>
+      <tbody>
+           {% for machine in active_machines %}
+            <tr>
+                <td>{{machine.id}}</td>
+                <td><a class="text-dark" href="http://localhost:8000/{{machine.id}}/machines/">{{machine.name}}</a></td>
+                <td>{{machine.price}}$</td>
+                <td>{{machine.machine_status}}</td>
+            </tr>
+
+        {% endfor %}
+
+    </tbody>
+  </table>
+</div>
+
+
+{% endblock %}
+
+
