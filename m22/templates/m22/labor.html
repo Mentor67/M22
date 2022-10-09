@@ -1,24 +1,33 @@
 {% extends 'base.html' %}
 {% block title %}Maintenance M22 - Machines{% endblock %}
 {% block content %}
+<a href="{% url 'new_labor' %}"><button type="button" class="btn btn-secondary btn-lg btn-block">Add a new labor</button> </a>
+<br>
+<br>
+
+
   <h2>Labors</h2>
   <p>Here we can find all the labors instances with their basic info</p>
  <table class="table table-dark table-hover">
     <thead>
        <tr>
-        <th>ID</th>
+        <th>DOCUMENT</th>
         <th>MAINTENANCE</th>
         <th>PROVIDER</th>
-           <th>VALUE</th>
+        <th>VALUE</th>
+
      </tr>
     </thead>
       <tbody>
            {% for labor in labors %}
             <tr>
-                <td>{{labor.id}}</td>
+<!--                <td>{{labor.document}}</td>-->
+                <td><a class="text-white" href="{% url 'labor_detail' pk=labor.id %}">{{labor.document}}</a></td>
                 <td>{{labor.maintenance.maintenance_type}}</td>
                 <td>{{labor.provider.name}}</td>
                 <td>{{labor.value}}$</td>
+                <td><a href="{% url 'delete_labor' pk=labor.id %}" class="btn btn-danger"> Remove </a> </td>
+
             </tr>
 
         {% endfor %}
@@ -26,4 +35,17 @@
     </tbody>
   </table>
 </div>
+
+
+<br>
+<br>
+<a href="{% url 'new_labor' %}"><button type="button" class="btn btn-secondary btn-lg btn-block">Add a new labor</button> </a>
 {% endblock %}
+
+    maintenance = models.ForeignKey(Maintenance, on_delete=models.CASCADE)
+    provider = models.ForeignKey(Provider, on_delete=models.CASCADE)
+    document = models.CharField(max_length=5)
+    value = models.FloatField(default=0)
+    created_on = models.DateField(auto_now_add=True)
+    modified_on = models.DateField(auto_now=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)

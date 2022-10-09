@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% block title %}Maintenance M22 - Machines{% endblock %}
+{% block content %}
+
+<td><a href="{% url 'providers' %}" class="btn btn-dark"> Back to Providers </a> </td>
+<br>
+<br>
+
+<div class="container">
+    <div class="card p-3 mb-2" style="width: 28rem;">
+        <div class="alert alert-primary p-4 border rounded" role="alert">
+      <div class="card-header font-weight-bold text-center">
+            <div class="text-dark">{{provider_detail.name}}</div>
+      </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item p-3 mb-2 bg-dark text-white">type: {{provider_detail.provider_type}}</li>
+            <li class="list-group-item p-3 mb-2 bg-dark text-white">status: {{provider_detail.provider_status}}</li>
+            <li class="list-group-item p-3 mb-2 bg-dark text-white">partner since: {{provider_detail.created_on}}</li>
+            <li class="list-group-item p-3 mb-2 bg-dark text-white">responsible user: {{provider_detail.user}}</li>
+        </ul>
+    </div>
+</div>
+</div>
+
+<div class="container">
+<div class="alert alert-primary p-4 border rounded" role="alert">
+  <div class="font-weight-bold text-center text-dark">Here are all the Parts available to buy from {{provider_detail.name}}</div>
+<table class="table table-dark table-hover">
+    <thead>
+       <tr>
+        <th>NAME</th>
+        <th>PRICE</th>
+        <th>CATEGORY</th>
+        <th>STOCK</th>
+        <th>RESPONSIBLE USER</th>
+     </tr>
+    </thead>
+      <tbody>
+           {% for part in provider_detail.part_set.all %}
+            <tr>
+                <td>{{part.name}}</td>
+                <td>{{part.price}}$</td>
+                <td>{{part.part_category}}</td>
+                <td>{{part.stock}}</td>
+                <td>{{part.user}}</td>
+            </tr>
+
+        {% endfor %}
+
+    </tbody>
+  </table>
+</div>
+</div>
+{% endblock %}
+
+
+
+description = models.CharField(max_length=200)
+    price = models.FloatField(default=0)
+    part_category = models.ForeignKey(PartCategory, on_delete=models.CASCADE)
+    provider = models.ForeignKey(Provider, on_delete=models.CASCADE)
+    stock = models.FloatField(default=0)
+    mu = models.CharField(max_length=2)
+    target_stock = models.FloatField(default=0)
+    provider_status = models.ForeignKey(ProviderStatus, on_delete=models.CASCADE)
+    created_on = models.DateField(auto_now_add=True)
+    modified_on = models.DateField(auto_now=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)

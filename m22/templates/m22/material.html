@@ -1,24 +1,34 @@
 {% extends 'base.html' %}
 {% block title %}Maintenance M22 - Machines{% endblock %}
 {% block content %}
+<a href="{% url 'new_material' %}"><button type="button" class="btn btn-secondary btn-lg btn-block">Add a new material</button> </a>
+<br>
+<br>
+
+
   <h2>Materials</h2>
   <p>Here we can find all the materials instances with their basic info</p>
  <table class="table table-dark table-hover">
     <thead>
        <tr>
         <th>ID</th>
-        <th>PART</th>
+        <th>MATERIAL PART</th>
         <th>QUANTITY</th>
-           <th>TYPE</th>
+        <th>MAINTENANCE TYPE</th>
+        <th>FOR</th>
      </tr>
     </thead>
       <tbody>
            {% for material in materials %}
             <tr>
                 <td>{{material.id}}</td>
-                <td>{{material.part.name}}</td>
-                <td>{{material.qty}}</td>
+<!--                <td>{{material.part.name}}</td>-->
+                <td><a class="text-white" href="{% url 'material_detail' pk=material.id %}">{{material.part.name}}</a></td>
+                <td>{{material.qty}} {{material.part.mu}}</td>
                 <td>{{material.maintenance.maintenance_type}}</td>
+                <td>{{material.maintenance.machine.description}} - {{material.maintenance.machine.name}}</td>
+                <td><a href="{% url 'delete_material' pk=material.id %}" class="btn btn-danger"> Remove </a> </td>
+
             </tr>
 
         {% endfor %}
@@ -26,6 +36,10 @@
     </tbody>
   </table>
 </div>
+
+<br>
+<br>
+<a href="{% url 'new_material' %}"><button type="button" class="btn btn-secondary btn-lg btn-block">Add a new material</button> </a>
 {% endblock %}
 
 

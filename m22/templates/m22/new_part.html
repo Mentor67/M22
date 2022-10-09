@@ -4,7 +4,7 @@
 
   <form action="{% url 'new_part' %}" method="POST">
     {% csrf_token %}
-    {{ form }}
+    {{ form.as_p }}
     <button type="submit" class="btn btn-primary my-5">Submit</button>
   </form>
 {% endblock %}

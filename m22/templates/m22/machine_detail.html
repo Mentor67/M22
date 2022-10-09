@@ -2,11 +2,105 @@
 {% block title %}Maintenance M22 - Machines{% endblock %}
 {% block content %}
 
-<td>{{machine_detail.id}}</td>
-<td>{{machine_detail.machine_category}}</td>
+<td><a href="{% url 'machines' %}" class="btn btn-dark"> Back to Machines </a> </td>
+<br>
+<br>
 
 
-<h4> {{maintenance.id}} </h4>
+
+<div class="container">
+    <div class="card p-3 mb-2" style="width: 28rem;">
+        <div class="alert alert-primary p-4 border rounded" role="alert">
+      <div class="card-header font-weight-bold text-center">
+            <div class="text-dark">{{machine_detail.description}}</div>
+      </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item p-3 mb-2 bg-dark text-white">name: {{machine_detail.name}}</li>
+            <li class="list-group-item p-3 mb-2 bg-dark text-white">serial_number: {{machine_detail.serial_number}}</li>
+            <li class="list-group-item p-3 mb-2 bg-dark text-white">manufactured: {{machine_detail.manufactured}}</li>
+            <li class="list-group-item p-3 mb-2 bg-dark text-white">commissioned: {{machine_detail.commissioned}}</li>
+            <li class="list-group-item p-3 mb-2 bg-dark text-white">price: {{machine_detail.price}} $</li>
+            <li class="list-group-item p-3 mb-2 bg-dark text-white">category: {{machine_detail.machine_category}}</li>
+            <li class="list-group-item p-3 mb-2 bg-dark text-white">status: {{machine_detail.machine_status}}</li>
+        </ul>
+    </div>
+</div>
+<br>
 
 
+
+<div class="container">
+<div class="alert alert-primary p-4 border rounded" role="alert">
+  <div class="font-weight-bold text-center text-dark">Here are all the Maintenances needed for {{machine_detail.description}}, {{machine_detail.name}}</div>
+<table class="table table-dark table-hover">
+    <thead>
+       <tr>
+           <th>TYPE</th>
+        <th>DATE</th>
+        <th>STATUS</th>
+        <th>CREATED</th>
+        <th>RESPONSIBLE USER</th>
+     </tr>
+    </thead>
+      <tbody>
+           {% for maintenance in machine_detail.maintenance_set.all %}
+
+            <tr>
+                <td>{{maintenance.maintenance_type}}</td>
+                <td>{{maintenance.maintenance_date}}</td>
+                <td>{{maintenance.maintenance_status}}</td>
+                <td>{{maintenance.created_on}}</td>
+                <td>{{maintenance.user}}</td>
+            </tr>
+        {% endfor %}
+
+    </tbody>
+  </table>
+</div>
+</div>
+
+
+
+
+
+
+
+<div class="container"></div>
+
+<div class="alert alert-primary p-4 border rounded" role="alert">
+
+<div class="table table-dark table-hover" role="alert">
+
+
+{% for maintenance in machine_detail.maintenance_set.all %}
+
+<div class="table table-dark p-3 border" role="alert">
+
+    <div class=" font-weight-bold">
+    {{maintenance.id}}.
+    {{maintenance.maintenance_type}}
+    </div>
+    Here are all the parts that needs to be changed in this maintenance procedure
+
+</div>
+
+{% for material in maintenance.material_set.all %}
+
+<div class="table table-dark table-hover p-2" role="alert">
+
+    <div>
+        <br>name: {{material.part.name}}
+        <br>quantity: {{material.qty}} {{material.part.mu}}
+        <br> description: {{material.part.description}}
+    </div>
+
+</div>
+
+
+{% endfor %}
+{% endfor %}
+
+</div>
+</div>
+</div>
 {% endblock %}

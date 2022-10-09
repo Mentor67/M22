@@ -1,0 +1,12 @@
+{% extends 'base.html' %}
+{% block title %}Maintenance M22 - Machines{% endblock %}
+{% block content %}
+
+  <form method="post">
+    {% csrf_token %}
+    {{ form }}
+    <p>Are you sure you want to delete {{maintenance.maintenance_type}} for {{maintenance.machine.name}} - {{maintenance.machine.description}}</p>
+    <button type="submit" class="btn btn-danger my-5">Confirm</button>
+  </form>
+
+{% endblock %}

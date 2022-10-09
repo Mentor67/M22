@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Maintenance M22 - Machines{% endblock %}
+{% block content %}
+
+<td><a href="{% url 'labors' %}" class="btn btn-dark"> Back to Labors </a> </td>
+<br>
+<br>
+
+
+<div class="container">
+    <div class="card p-3 mb-2" style="width: 28rem;">
+        <div class="alert alert-primary p-4 border rounded" role="alert">
+      <div class="card-header font-weight-bold text-center">
+            <div class="text-dark">{{labor_detail.document}} for {{labor_detail.maintenance.maintenance_type}} - {{labor_detail.maintenance.machine.name}} - {{labor_detail.maintenance.machine.description}}</div>
+      </div>
+        <ul class="list-group list-group-flush">
+            <li class="list-group-item p-3 mb-2 bg-dark text-white">maintenance type: {{labor_detail.maintenance.maintenance_type}}</li>
+            <li class="list-group-item p-3 mb-2 bg-dark text-white">provider: {{labor_detail.provider.name}}</li>
+            <li class="list-group-item p-3 mb-2 bg-dark text-white">value: {{labor_detail.value}}$</li>
+            <li class="list-group-item p-3 mb-2 bg-dark text-white">created on: {{labor_detail.created_on}}</li>
+            <li class="list-group-item p-3 mb-2 bg-dark text-white">responsible user: {{labor_detail.user}}</li>
+        </ul>
+    </div>
+</div>
+</div>
+<br>
+
+{% endblock %}
+    maintenance = models.ForeignKey(Maintenance, on_delete=models.CASCADE)
+    provider = models.ForeignKey(Provider, on_delete=models.CASCADE)
+    document = models.CharField(max_length=5)
+    value = models.FloatField(default=0)
+    created_on = models.DateField(auto_now_add=True)
+    modified_on = models.DateField(auto_now=True)
+    user = models.ForeignKey(User, on_delete=models.CASCADE)

@@ -22,9 +22,9 @@
 <br>
 
 <div class="container">
-  <h2>Providers</h2>
+  <h2>Inactive Providers</h2>
   <p>Here we can find all the providers instances with their basic info</p>
-  <table class="table table-dark table-hover">
+  <table class="table table-warning table-hover">
     <thead>
        <tr>
         <th>ID</th>
@@ -34,10 +34,10 @@
      </tr>
     </thead>
       <tbody>
-           {% for provider in providers %}
+           {% for provider in inactive_providers %}
             <tr>
                 <td>{{provider.id}}</td>
-                <td><a class="text-white" href="http://localhost:8000/{{provider.id}}/providers/">{{provider.name}}</a></td>
+                <td><a class="text-dark" href="http://localhost:8000/{{provider.id}}/providers/">{{provider.name}}</a></td>
                 <td>{{provider.provider_type}}</td>
                 <td>{{provider.provider_status}}</td>
                 <td><a href="{% url 'delete_provider' pk=provider.id %}" class="btn btn-danger"> Remove </a> </td>

@@ -6,7 +6,7 @@
 
 <!--  first icon start-->
   <div class="col-4 d-inline-flex px-3 py-3 ">
-    <a class="d-flex flex-column text-dark text-center p-4 border rounded menu-link" href="http://localhost:8000/machines/">
+    <a class="d-flex flex-column text-dark text-center p-4 border rounded menu-link" href="{% url 'machines' %}">
      <img class="img-fluid" src="https://cdn-icons-png.flaticon.com/512/942/942387.png"
        width="110" height="110">
 
@@ -19,7 +19,7 @@
 
 <!--  second icon start-->
   <div class="col-4 d-inline-flex px-3 py-3 ">
-    <a class="d-flex flex-column text-dark text-center p-4 border rounded menu-link" href="http://localhost:8000/providers/">
+    <a class="d-flex flex-column text-dark text-center p-4 border rounded menu-link" href="{% url 'providers' %}">
      <img class="img-fluid" src="https://cdn-icons-png.flaticon.com/512/1560/1560002.png"
        width="110" height="110">
 
@@ -32,7 +32,7 @@
 
   <!--  3rd icon start-->
   <div class="col-4 d-inline-flex px-3 py-3 ">
-    <a class="d-flex flex-column text-dark text-center p-4 border rounded menu-link" href="http://localhost:8000/parts/">
+    <a class="d-flex flex-column text-dark text-center p-4 border rounded menu-link" href="{% url 'parts' %}">
      <img class="img-fluid" src="https://cdn-icons-png.flaticon.com/512/1643/1643516.png"
        width="110" height="110">
 
@@ -45,7 +45,7 @@
 
     <!--  4th icon start-->
   <div class="col-4 d-inline-flex px-3 py-3 ">
-     <a class="d-flex flex-column text-dark text-center p-4 border rounded menu-link" href="http://localhost:8000/maintenances/">
+     <a class="d-flex flex-column text-dark text-center p-4 border rounded menu-link" href="{% url 'maintenances' %}">
      <img class="img-fluid" src="https://cdn-icons-png.flaticon.com/512/2778/2778802.png"
        width="110" height="110">
 
@@ -71,7 +71,7 @@
 
       <!--  6th icon start-->
   <div class="col-4 d-inline-flex px-3 py-3 ">
-     <a class="d-flex flex-column text-dark text-center p-4 border rounded menu-link" href="http://localhost:8000/labors/">
+     <a class="d-flex flex-column text-dark text-center p-4 border rounded menu-link" href="{% url 'labors' %}">
      <img class="img-fluid" src="https://cdn-icons-png.flaticon.com/512/7315/7315214.png"
        width="110" height="110">
 
@@ -83,5 +83,4 @@
 <!--  6th icon end-->
     </div>
 </div>
-
 {% endblock %}
